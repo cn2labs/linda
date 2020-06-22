@@ -1,0 +1,55 @@
+/*
+	Description: Linting HTML
+	Author: Andre Kokowin
+	Author URI: connect2.gmbh
+*/
+
+/* Style to make the Inline elements noticeable */
+*[style]:after {
+  content: 'This element has inline styles';
+  color: red;
+  outline: 2px dotted red;
+}
+
+/* Faulty or Missing Link Targets */
+a:not([href]):after,
+a[href='#']:after,
+a[href='']:after,
+a[href*='javascript:void(0)']:after {
+  content: 'Faulty or Missing Link Targets';
+  padding: 0 0.5rem;
+  color: red;
+}
+
+/* Unaccessible Images */
+img:not([alt]) {
+  outline: 2px dotted red;
+}
+
+/* Missing Document Language */
+html:not([lang]):before,
+html[lang='']:before {
+  content: 'Missing Document Language';
+  color: red;
+  outline: 2px dotted red;
+}
+
+/* Unlabelled Form Elements */
+input:not([id]),
+select:not([id]),
+textarea:not([id]),
+label:not([for]),
+input:not([name]),
+select:not([name]),
+textarea:not([name]),
+form:not([name]):not([id]) {
+  outline: 2px dotted red;
+}
+
+/* Empty Interactive Elements */
+button:empty:after,
+a:empty:after {
+  content: 'Link/Button is empty';
+  color: red;
+  padding: 1rem;
+}
